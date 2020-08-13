@@ -26,7 +26,8 @@ mix.combine([
     'resources/assets/css/libs/font-awesome.css',
     'resources/assets/css/libs/metisMenu.css',
     'resources/assets/css/libs/sb-admin-2.css',
-    'resources/assets/css/libs/styles.css'
+    'resources/assets/css/libs/styles.css',
+    'resources/assets/sass/app.scss'
 ], 'public/css/app.css');
 
 

@@ -1,0 +1,39 @@
+@extends('layouts.admin')
+
+
+
+@section('content')
+
+<h1>Create Users</h1>
+
+
+{!! Form::open(['method' =>'POST','action' => 'AdminUserController@store']) !!}
+
+<div class="form-group">
+
+    {!! Form::label('name','Name:') !!}
+    {!! Form::text('name',null,['class'=>'form-control']) !!}
+
+
+    {!! Form::label('email','E-mail:') !!}
+    {!! Form::email('email',null,['class'=>'form-control']) !!}
+
+
+    {!! Form::label('password','Password:') !!}
+    {!! Form::password('password',null,['class'=>'form-control']) !!}
+
+    {!! Form::label('password-confirm','Confirm:') !!}
+    {!! Form::password('password-confirm',null,['class'=>'form-control']) !!}
+
+
+</div>
+
+<div class="form-group">
+
+    {!! Form::submit('Create Post',[ 'class'=>'btn btn-primary']) !!}
+
+</div>
+
+{!! Form::close() !!}
+
+@endsection

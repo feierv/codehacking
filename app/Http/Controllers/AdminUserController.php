@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+
 class AdminUserController extends Controller
 {
     /**
@@ -15,7 +17,16 @@ class AdminUserController extends Controller
     {
         //
 
-        return view('admin.users.index');
+
+        $users = User::all();
+
+        // foreach($users as $user){
+
+        //     echo $user->name;
+
+        // }
+
+        return view('admin.users.index',compact('users'));
 
     }
 
@@ -40,6 +51,10 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         //
+             dd($request->all());
+
+           
+
     }
 
     /**
