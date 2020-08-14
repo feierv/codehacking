@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use App\Photo;
+
 class AdminUserController extends Controller
 {
     /**
@@ -19,17 +21,9 @@ class AdminUserController extends Controller
     {
         //
 
-
         $users = User::all();
 
-        // foreach($users as $user){
-
-        //     echo $user->name;
-
-        // }
-
-        return view('admin.users.index',compact('users'));
-
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -41,9 +35,8 @@ class AdminUserController extends Controller
     {
         //
 
-        $roles = Role::pluck('name','id');
-        return view('admin.users.create',compact('roles'));
-
+        $roles = Role::pluck('name', 'id');
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -54,10 +47,27 @@ class AdminUserController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        //
-             dd($request->all());
 
-        
+        $input = $request->all();
+
+        if ($file = $request->file('photo_id')) {
+
+            $name = time() . $file->getClientOriginalName();
+
+            $file->move('images',$name);
+
+             $photo = Photo::create(['file'=>$name]);
+
+            $input['photo_id'] = $photo->id;
+
+        } 
+
+        $input['password'] = bcrypt($request->password);
+
+        User::create($input);
+
+
+         return  redirect('/admin/users');
     }
 
     /**
@@ -70,7 +80,6 @@ class AdminUserController extends Controller
     {
         //
         return view('admin.users.show');
-
     }
 
     /**
@@ -84,7 +93,6 @@ class AdminUserController extends Controller
         //
 
         return view('admin.users.edit');
-
     }
 
     /**

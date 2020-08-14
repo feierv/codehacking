@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
 
 Route::get('/admin',function(){
@@ -31,7 +31,7 @@ Route::get('/admin',function(){
     return view('admin.index');
 
 
-});
+})->name('home');
 
 
 
