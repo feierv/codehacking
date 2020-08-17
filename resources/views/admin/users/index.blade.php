@@ -4,6 +4,13 @@
 
 @section('content')
 
+
+
+@if(Session::has('deleted_user'))
+
+
+@endif
+
 <h1>Users</h1>
 
 

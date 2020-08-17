@@ -64,11 +64,20 @@
  -->
 
 
-    <div class="form-group">
+    <div class="form-group container-fluid">
 
-        {!! Form::submit('Update User',[ 'class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Update User',[ 'class'=>'btn btn-primary col-sm-3']) !!}
+
+          {!! Form::open(['method' =>'Delete','action' => ['AdminUserController@destroy',$user->id] ]) !!}
+
+             {!! Form::submit('Delete User',[ 'class'=>'btn btn-danger pull-right col-sm-3']) !!}
+
+        {!! Form::close() !!}
+
 
     </div>
+
+
 
     @if (count($errors)>0)
     <div class="alert alert-danger" role="alert">

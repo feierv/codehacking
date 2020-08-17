@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\AdminUserController;
 use App\User;
 use App\Role;
 
@@ -34,5 +36,13 @@ Route::get('/admin',function(){
 })->name('home');
 
 
+Route::group(['middleware'=>'admin'],function(){
 
-Route::resource('/admin/users', 'AdminUserController');
+
+    Route::resource('admin/users','AdminUserController');
+
+});
+
+
+
+
