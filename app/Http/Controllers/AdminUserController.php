@@ -6,7 +6,8 @@ use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Role;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Sessionl;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 
@@ -36,9 +37,10 @@ class AdminUserController extends Controller
     public function create()
     {
         //
+        $user = Auth::user();
 
         $roles = Role::pluck('name', 'id');
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles','user'));
     }
 
     /**

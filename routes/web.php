@@ -15,6 +15,8 @@ use App\Http\Controllers\AdminUserController;
 use App\User;
 use App\Role;
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     // return view('welcome');
 
@@ -29,8 +31,10 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/admin',function(){
 
+    $user = Auth::user();
 
-    return view('admin.index');
+
+    return view('admin.index',compact('user'));
 
 
 })->name('home');
@@ -39,7 +43,11 @@ Route::get('/admin',function(){
 Route::group(['middleware'=>'admin'],function(){
 
 
-    Route::resource('admin/users','AdminUserController');
+    Route::resource('/admin/users','AdminUserController');
+
+    Route::resource('/admin/posts','AdminPostsController');
+
+
 
 });
 
